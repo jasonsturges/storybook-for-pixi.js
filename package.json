@@ -19,5 +19,7 @@
     "babel-loader": "^8.2.3",
     "prettier": "^2.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "pixi.js": "^6.2.2"
+  }
 }
