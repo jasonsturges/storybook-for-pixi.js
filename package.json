@@ -4,8 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@storybook/addon-actions": "^6.5.0-alpha.40",
+    "@storybook/addon-essentials": "^6.5.0-alpha.40",
+    "@storybook/addon-links": "^6.5.0-alpha.40",
+    "@storybook/html": "^6.5.0-alpha.40",
+    "babel-loader": "^8.2.3"
+  },
+  "dependencies": {}
 }
