@@ -1,15 +1,28 @@
 {
-  "name": "storybook-for-pixi",
+  "name": "storybook-for-pixi.js",
   "version": "1.0.0",
-  "description": "",
+  "description": "Using Storybook for Pixi.js component testing",
+  "author": "Jason Sturges <jason@jsonsturges.com> (https://jasonsturges.com)",
+  "homepage": "https://jasonsturges.github.io/storybook-for-pixi.js/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonsturges/storybook-for-pixi.js"
+  },
+  "license": "ISC",
+  "keywords": [
+    "pixi",
+    "storybook"
+  ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "pixi.js": "^6.2.2",
+    "pixi-viewport": "^4.34.4"
+  },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@storybook/addon-actions": "^6.5.0-alpha.40",
@@ -18,9 +31,5 @@
     "@storybook/html": "^6.5.0-alpha.40",
     "babel-loader": "^8.2.3",
     "prettier": "^2.5.1"
-  },
-  "dependencies": {
-    "pixi.js": "^6.2.2",
-    "pixi-viewport": "^4.34.4"
   }
 }
