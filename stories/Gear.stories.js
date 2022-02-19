@@ -8,7 +8,7 @@ export default {
     stroke: { control: "number" },
     color: { control: "color" },
     fill: { control: "color" },
-    points: { control: "number" },
+    sides: { control: "number" },
     innerRadius: { control: "number" },
     outerRadius: { control: "number" },
     angle: { control: "number" },
