@@ -39,6 +39,14 @@ Begin via any of the following:
     git add -A
     git commit -m "Initial commit"
     ````
+    
+    
+Install and run via npm (or yarn) by executing the `storybook` script:
+
+```
+npm install
+npm run storybook
+```
 
 ## Usage
 
