@@ -11,7 +11,9 @@ This project includes:
 
 ## Background
 
-Often conventions involve developing components in isolation and leveraging GUI frameowkrs such as [dat.GUI](https://github.com/dataarts/dat.gui) for controls.
+Often conventions involve developing components in isolation and leveraging GUI frameworks such as [dat.GUI](https://github.com/dataarts/dat.gui) for controls.
+
+For projects of greater complexity there may be a need to classify numerous scenarios, which is the catalyst for this project.
 
 
 ## Getting Started
