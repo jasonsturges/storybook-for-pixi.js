@@ -1,4 +1,87 @@
-# storybook-for-pixi.js
-Using Storybook for Pixi.js component testing
+# Storybook for Pixi.js
+Using Storybook for Pixi.js component develment
 
 <img width="1180" alt="storybook-for-pixi" src="https://user-images.githubusercontent.com/1213591/154822267-78469605-ebf1-4280-adbc-025832b78553.png">
+
+## Background
+
+Often conventions involve developing components in isolation and leveraging GUI frameowkrs such as [dat.GUI](https://github.com/dataarts/dat.gui) for controls.
+
+
+## Getting Started
+
+Begin via any of the following:
+
+- Press the "*Use this template*" button
+
+- Use [degit](https://github.com/Rich-Harris/degit) to execute: 
+
+    ```
+    degit github:jasonsturges/storybook-for-pixi.js
+    ```
+    
+- Use [GitHub CLI](https://cli.github.com/) to execute: 
+
+    ```
+    gh repo create <name> --template="https://github.com/jasonsturges/storybook-for-pixi.js"
+    ```
+    
+- Simply `git clone`, delete the existing .git folder, and then:
+
+    ```
+    git init
+    git add -A
+    git commit -m "Initial commit"
+    ````
+
+## Usage
+
+To create a story, add a new file under the "_stories/_" folder named "_&lt;story-name&gt;.stories.js_"
+
+Each story has a default export for navigation grouping and argument types:
+
+```js
+export default {
+  title: "Example/Shapes",
+  argTypes: {
+    width: { control: "number" },
+    height: { control: "number" },
+  },
+};
+```
+
+In that story, create a template via the `createScene()` function and returning the `canvas` object:
+
+```js
+const Template = (args) => {
+  const { canvas, app, viewport } = createScene({
+    width: args.width,
+    height: args.height,
+  });
+
+  const graphics = new PIXI.Graphics();
+  graphics.lineStyle(2, parseColor(args.color));
+  graphics.drawRect(100, 100, 200, 200);
+  viewport.addChild(graphics);
+
+  return canvas;
+};
+```
+
+Apply the template by passing default arguments:
+
+```js
+export const Square1 = Template.bind({});
+Square1.args = {
+  width: 600,
+  height: 400,
+  color: "#ffffff",
+};
+
+export const Square2 = Template.bind({});
+Square2.args = {
+  width: 600,
+  height: 400,
+  color: "#ffffff",
+};
+```
