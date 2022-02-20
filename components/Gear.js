@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { createScene } from "./Scene";
+import { createScene } from "../stories/Scene";
 import { parseColor } from "../utils/ColorUtils";
 
 export function drawGear(
