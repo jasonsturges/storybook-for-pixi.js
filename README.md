@@ -42,10 +42,11 @@ Each story has a default export for navigation grouping and argument types:
 
 ```js
 export default {
-  title: "Example/Shapes",
+  title: "Example/Squares",
   argTypes: {
     width: { control: "number" },
     height: { control: "number" },
+    stroke: { control: "color" },
   },
 };
 ```
@@ -60,7 +61,7 @@ const Template = (args) => {
   });
 
   const graphics = new PIXI.Graphics();
-  graphics.lineStyle(2, parseColor(args.color));
+  graphics.lineStyle(2, parseColor(args.stroke));
   graphics.drawRect(100, 100, 200, 200);
   viewport.addChild(graphics);
 
@@ -75,13 +76,24 @@ export const Square1 = Template.bind({});
 Square1.args = {
   width: 600,
   height: 400,
-  color: "#ffffff",
+  stroke: "#ffffff",
 };
 
 export const Square2 = Template.bind({});
 Square2.args = {
   width: 600,
   height: 400,
-  color: "#ffffff",
+  stroke: "#ff00ff",
 };
 ```
+
+Result of this story will be:
+
+![storybook-squares](https://user-images.githubusercontent.com/1213591/154827145-525bd885-a041-43b8-a9ea-a29e3e6a0ba1.gif)
+
+See more examples: [Star][ex1], [Burst][ex2], [Gear][ex3]
+
+
+  [ex1]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/Star.stories.js
+  [ex2]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/Burst.stories.js
+  [ex3]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/Gear.stories.js
