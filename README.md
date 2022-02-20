@@ -1,7 +1,13 @@
 # Storybook for Pixi.js
-Using Storybook for Pixi.js component develment
+Using Storybook for [Pixi.js](https://pixijs.com/) component develment
 
 <img width="1180" alt="storybook-for-pixi" src="https://user-images.githubusercontent.com/1213591/154822267-78469605-ebf1-4280-adbc-025832b78553.png">
+
+This project includes:
+- [Storybook](https://storybook.js.org/)
+- [Pixi.js](https://pixijs.com/)
+- [Pixi Viiewport](https://github.com/davidfig/pixi-viewport)
+
 
 ## Background
 
