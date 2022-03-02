@@ -1,7 +1,7 @@
 {
   "name": "storybook-for-pixi.js",
   "version": "1.0.0",
-  "description": "Using Storybook for Pixi.js component testing",
+  "description": "Using Storybook for Pixi.js graphics development",
   "author": "Jason Sturges <jason@jsonsturges.com> (https://jasonsturges.com)",
   "homepage": "https://jasonsturges.github.io/storybook-for-pixi.js/",
   "repository": {
@@ -11,13 +11,15 @@
   "license": "ISC",
   "keywords": [
     "pixi",
-    "storybook"
+    "storybook",
+    "ui",
+    "component",
+    "graphics"
   ],
   "main": "index.js",
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "pixi.js": "^6.2.2",
