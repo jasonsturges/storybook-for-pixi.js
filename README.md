@@ -8,6 +8,8 @@ This project includes:
 - [Pixi.js](https://pixijs.com/)
 - [Pixi Viiewport](https://github.com/davidfig/pixi-viewport)
 
+Live example at: https://jasonsturges.github.io/storybook-for-pixi.js
+
 
 ## Background
 
