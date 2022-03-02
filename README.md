@@ -90,7 +90,7 @@ To add support for TypeScript, just add the `typescript` package to your `packag
 
 ## Usage
 
-To create a story, add a new file under the "_stories/_" folder named "_&lt;story-name&gt;.stories.js_"
+To create a story, add a new file under the `stories/` folder named `<story-name>.stories.js`.
 
 Each story has a default export for navigation grouping and argument types:
 
