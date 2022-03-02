@@ -1,4 +1,4 @@
-import { createStar } from "../src/components/Star";
+import { createGear } from "../../src/components/Gear";
 
 export default {
   title: "Example/Shapes",
@@ -8,24 +8,26 @@ export default {
     stroke: { control: "number" },
     color: { control: "color" },
     fill: { control: "color" },
-    points: { control: "number" },
+    sides: { control: "number" },
     innerRadius: { control: "number" },
     outerRadius: { control: "number" },
     angle: { control: "number" },
   },
 };
 
-const Template = (args) => createStar(args);
+const Template = (args) => createGear(args);
 
-export const Star = Template.bind({});
-Star.args = {
+export const Gear = Template.bind({});
+Gear.args = {
   width: 600,
   height: 400,
   stroke: 2,
   color: "#cfefff",
   fill: "#036191",
-  points: 5,
-  innerRadius: 25,
+  sides: 8,
+  innerRadius: 35,
   outerRadius: 50,
+  holeSides: 8,
+  holeRadius: 10,
   angle: 0,
 };
