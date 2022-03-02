@@ -1,4 +1,4 @@
-import { createGear } from "../components/Gear";
+import { createGear } from "../src/components/Gear";
 
 export default {
   title: "Example/Shapes",

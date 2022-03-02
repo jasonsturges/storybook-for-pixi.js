@@ -1,4 +1,4 @@
-import { createBurst } from "../components/Burst";
+import { createBurst } from "../src/components/Burst";
 
 export default {
   title: "Example/Shapes",

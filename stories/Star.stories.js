@@ -1,4 +1,4 @@
-import { createStar } from "../components/Star";
+import { createStar } from "../src/components/Star";
 
 export default {
   title: "Example/Shapes",
