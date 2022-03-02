@@ -107,9 +107,24 @@ Result of this story will be:
 
 ![storybook-squares](https://user-images.githubusercontent.com/1213591/154827145-525bd885-a041-43b8-a9ea-a29e3e6a0ba1.gif)
 
-See more examples: [Star][ex1], [Burst][ex2], [Gear][ex3]
+See more examples: [Star][ex1], [Burst][ex2], [Gear][ex3], [Text Style][ex4]
 
 
-  [ex1]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/Star.stories.js
-  [ex2]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/Burst.stories.js
-  [ex3]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/Gear.stories.js
+## Configuration
+
+If you prefer to keep stories out of the root or `src/` folders, you can optionally store them within the `.storybook/` folder.  This isolates all aspects of Storybook within a single folder.  
+
+Move your `stories/` folder inside `.storybook/` and update Storybook's `main.js` configuration file to the new path:
+
+```json
+"stories": [
+  "./stories/**/*.stories.mdx",
+  "./stories/**/*.stories.@(js|jsx|ts|tsx)"
+],
+```
+
+
+  [ex1]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/src/components/Star.stories.js
+  [ex2]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/src/components/Burst.js
+  [ex3]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/src/components/Gear.stories.js
+  [ex4]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/text/Text.stories.js
