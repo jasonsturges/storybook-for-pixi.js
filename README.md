@@ -83,6 +83,7 @@ To add support for TypeScript, just add the `typescript` package to your `packag
 
 ```json
 "devDependencies": {
+  "tslib": "^2.3.1",
   "typescript": "^4.5.5"
 }
 ```
