@@ -34,6 +34,10 @@ export const resize = (width, height) => {
   viewport.resize(width, height);
 };
 
+window.addEventListener("resize", () => {
+  resize(window.innerWidth - 32, window.innerHeight - 36);
+});
+
 export const createScene = ({ width, height }) => {
   while (viewport.children.length > 0) {
     const child = viewport.children.shift();
