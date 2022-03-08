@@ -1,7 +1,3 @@
-import * as PIXI from "pixi.js";
-import { createScene } from "../../stories/Scene";
-import { parseColor } from "../utils/ColorUtils";
-
 export function drawBurst(
   target,
   x,
@@ -47,35 +43,3 @@ export function drawBurst(
 
   target.closePath();
 }
-
-export const createBurst = ({
-  width,
-  height,
-  stroke,
-  color,
-  fill,
-  sides,
-  innerRadius,
-  outerRadius,
-  angle,
-}) => {
-  const { canvas, app, viewport } = createScene({ width, height });
-
-  const graphics = new PIXI.Graphics();
-  graphics.lineStyle(stroke, parseColor(color));
-  graphics.beginFill(parseColor(fill));
-
-  drawBurst(
-    graphics,
-    width / 2,
-    height / 2,
-    sides,
-    innerRadius,
-    outerRadius,
-    angle
-  );
-
-  viewport.addChild(graphics);
-
-  return canvas;
-};
