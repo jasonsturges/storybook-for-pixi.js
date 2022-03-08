@@ -11,7 +11,7 @@
  */
 export function parseColor(value) {
   // Radix 10 or 16
-  if (Number.isInteger(value)) return parseInt(value);
+  if (Number.isInteger(value)) return value;
 
   // CSS Hexadecimal String
   if (value && value.charAt(0) === "#") {
@@ -23,6 +23,10 @@ export function parseColor(value) {
 
   if (re.test(value)) {
     const m = value.match(re);
-    return ((m[1] & 0xff) << 16) | ((m[2] & 0xff) << 8) | (m[3] & 0xff);
+    return (
+      ((parseInt(m)?.[1] & 0xff) << 16) | //
+      ((parseInt(m)?.[2] & 0xff) << 8) | //
+      (parseInt(m)?.[3] & 0xff)
+    );
   }
 }
