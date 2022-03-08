@@ -1,10 +1,11 @@
-import { createStar } from "../../src/components/Star";
+import * as PIXI from "pixi.js";
+import { canvas, viewport } from "../Scene";
+import { drawStar } from "../../src/components/Star";
+import { parseColor } from "../../src/utils/ColorUtils";
 
 export default {
   title: "Example/Shapes",
   argTypes: {
-    width: { control: "number" },
-    height: { control: "number" },
     stroke: { control: "number" },
     color: { control: "color" },
     fill: { control: "color" },
@@ -15,12 +16,34 @@ export default {
   },
 };
 
-const Template = (args) => createStar(args);
+export const Star = ({
+  stroke,
+  color,
+  fill,
+  points,
+  innerRadius,
+  outerRadius,
+  angle,
+}) => {
+  const graphics = new PIXI.Graphics();
+  graphics.lineStyle(stroke, parseColor(color));
+  graphics.beginFill(parseColor(fill));
 
-export const Star = Template.bind({});
+  drawStar(
+    graphics,
+    viewport.screenWidth / 2,
+    viewport.screenHeight / 2,
+    points,
+    innerRadius,
+    outerRadius,
+    angle
+  );
+
+  viewport.addChild(graphics);
+
+  return canvas;
+};
 Star.args = {
-  width: 600,
-  height: 400,
   stroke: 2,
   color: "#cfefff",
   fill: "#036191",
