@@ -1,10 +1,11 @@
-import { createBurst } from "../../src/components/Burst";
+import * as PIXI from "pixi.js";
+import { canvas, viewport } from "../Scene";
+import { drawBurst } from "../../src/components/Burst";
+import { parseColor } from "../../src/utils/ColorUtils";
 
 export default {
   title: "Example/Shapes",
   argTypes: {
-    width: { control: "number" },
-    height: { control: "number" },
     stroke: { control: "number" },
     color: { control: "color" },
     fill: { control: "color" },
@@ -15,12 +16,35 @@ export default {
   },
 };
 
-const Template = (args) => createBurst(args);
+export const Burst = ({
+  stroke,
+  color,
+  fill,
+  sides,
+  innerRadius,
+  outerRadius,
+  angle,
+}) => {
+  const graphics = new PIXI.Graphics();
 
-export const Burst = Template.bind({});
+  graphics.lineStyle(stroke, parseColor(color));
+  graphics.beginFill(parseColor(fill));
+
+  drawBurst(
+    graphics,
+    viewport.screenWidth / 2,
+    viewport.screenHeight / 2,
+    sides,
+    innerRadius,
+    outerRadius,
+    angle
+  );
+
+  viewport.addChild(graphics);
+
+  return canvas;
+};
 Burst.args = {
-  width: 600,
-  height: 400,
   stroke: 2,
   color: "#cfefff",
   fill: "#036191",
