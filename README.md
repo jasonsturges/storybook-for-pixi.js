@@ -182,27 +182,192 @@ Each story has a default export for navigation grouping and argument types:
 
 ```js
 export default {
-  title: "Example/Squares",
+  title: "Example/My Story",
+};
+```
+
+The above story will be located under "Example" as "My Story".
+
+### Basic Usage
+
+In its most simplistic form, a story simply exports a function.  The name of the function is the story name.
+
+```js
+import * as PIXI from "pixi.js";
+import { canvas, viewport } from "../Scene";
+
+export default {
+  title: "Example/Logos",
+};
+
+/**
+ * Pixi logo story
+ */
+export const PixiLogo = () => {
+  const logo = PIXI.Sprite.from("images/logo.svg");
+  logo.anchor.set(0.5, 0.5);
+  logo.x = viewport.screenWidth / 2;
+  logo.y = viewport.screenHeight / 2;
+  viewport.addChild(logo);
+
+  return canvas;
+};
+```
+
+The `Scene.js` defines a reusable pixi `app`, `viewport`, and `canvas` element to perform Pixi operations.
+
+<img width="1180" alt="story-pixi-logo" src="https://user-images.githubusercontent.com/1213591/157180116-02b38621-3d90-40f2-9d70-8ebece611c82.png">
+
+
+### Providing Controls as Arguments
+
+To include arguments, first define the `argTypes` used by the story.  These include controls of `number`, `boolean`, `text`, `color`, `date`, `radio`, `check`, and other advanced types.  See Storybook's documentation on [controls](https://storybook.js.org/docs/react/essentials/controls) for more.
+
+```js
+export default {
+  title: "Example/My Story",
   argTypes: {
     width: { control: "number" },
     height: { control: "number" },
-    stroke: { control: "color" },
+    fill: { control: "color" },
+    enabled: { control: "boolean" },
+    text: { control: "text" },
+    align: {
+      control: {
+        type: "radio",
+        options: ["left", "center", "right"],
+      },
+    },
   },
 };
 ```
 
-In that story, create a template via the `createScene()` function and returning the `canvas` object:
+These arguments may be accessed via the `args` object, passed to the story function:
 
 ```js
-const Template = (args) => {
-  const { canvas, app, viewport } = createScene({
-    width: args.width,
-    height: args.height,
+export const MyStoryExample = (args) => {
+  const text = new PIXI.Text(args.text, {
+    fontsize: 24,
+    fill: 0xffffff,
+    align: args.align,
   });
+}
+```
 
+Or, simply derefereced:
+
+```js
+export const MyStoryExample = ({text, align}) => {
+  const text = new PIXI.Text(text, {
+    fontsize: 24,
+    fill: 0xffffff,
+    align: align,
+  });
+}
+```
+
+To set default values, set the `args` of your story function immediately following the story:
+
+```js
+export const MyStoryExample = ({text, align}) => {
+  // ...story implementation
+}
+MyStoryExample.args = {
+  text: "Hello, World\n😀",
+  align: "center",
+};
+```
+
+The following is a full example of using arguments in a story:
+
+```js
+import * as PIXI from "pixi.js";
+import { canvas, viewport } from "../Scene";
+import { drawGear } from "../../src/components/Gear";
+import { parseColor } from "../../src/utils/ColorUtils";
+
+export default {
+  title: "Example/Shapes",
+  argTypes: {
+    stroke: { control: "number" },
+    color: { control: "color" },
+    fill: { control: "color" },
+    sides: { control: "number" },
+    innerRadius: { control: "number" },
+    outerRadius: { control: "number" },
+    angle: { control: "number" },
+  },
+};
+
+export const Gear = ({
+  stroke,
+  color,
+  fill,
+  sides,
+  innerRadius,
+  outerRadius,
+  holeSides,
+  holeRadius,
+  angle,
+}) => {
   const graphics = new PIXI.Graphics();
-  graphics.lineStyle(2, parseColor(args.stroke));
-  graphics.drawRect(100, 100, 200, 200);
+  graphics.lineStyle(stroke, parseColor(color));
+  graphics.beginFill(parseColor(fill));
+
+  drawGear(
+    graphics,
+    viewport.screenWidth / 2,
+    viewport.screenWidth / 2,
+    sides,
+    innerRadius,
+    outerRadius,
+    angle,
+    holeSides,
+    holeRadius
+  );
+
+  viewport.addChild(graphics);
+
+  return canvas;
+};
+Gear.args = {
+  stroke: 2,
+  color: "#cfefff",
+  fill: "#036191",
+  sides: 8,
+  innerRadius: 35,
+  outerRadius: 50,
+  holeSides: 8,
+  holeRadius: 10,
+  angle: 0,
+};
+```
+
+The above code results in:
+
+<img width="1180" alt="story-gear" src="https://user-images.githubusercontent.com/1213591/157182691-1fbd7021-fe02-401b-830c-ed4507029195.png">
+
+
+### Template
+
+Instead of defining each individual story as a bespoke function, templates can be defined to reuse common story construction.
+
+For example, create a template to be used by several stories:
+
+```js
+const Template = ({ stroke, color, fill, sides, radius, angle }) => {
+  const graphics = new PIXI.Graphics();
+  graphics.lineStyle(stroke, parseColor(color));
+  graphics.beginFill(parseColor(fill));
+  drawPolygon(
+    graphics,
+    viewport.screenWidth / 2,
+    viewport.screenHeight / 2,
+    sides,
+    radius,
+    angle
+  );
+
   viewport.addChild(graphics);
 
   return canvas;
@@ -212,24 +377,31 @@ const Template = (args) => {
 Apply the template by passing default arguments:
 
 ```js
-export const Square1 = Template.bind({});
-Square1.args = {
-  width: 600,
-  height: 400,
-  stroke: "#ffffff",
+export const Triangle = Template.bind({});
+Triangle.args = {
+  stroke: 2,
+  color: "#cfefff",
+  fill: "#036191",
+  sides: 3,
+  radius: 50,
+  angle: 0,
 };
 
-export const Square2 = Template.bind({});
-Square2.args = {
-  width: 600,
-  height: 400,
-  stroke: "#ff00ff",
+export const Square = Template.bind({});
+Square.args = {
+  stroke: 2,
+  color: "#cfefff",
+  fill: "#036191",
+  sides: 4,
+  radius: 50,
+  angle: 0,
 };
 ```
 
 Result of this story will be:
 
-![storybook-squares](https://user-images.githubusercontent.com/1213591/154827145-525bd885-a041-43b8-a9ea-a29e3e6a0ba1.gif)
+<img width="1180" alt="story-polygon" src="https://user-images.githubusercontent.com/1213591/157183208-2e73f6c7-741b-4566-a9b7-20b3f79ba283.png">
+
 
 See more examples: [Star][ex1], [Burst][ex2], [Gear][ex3], [Text Style][ex4]
 
