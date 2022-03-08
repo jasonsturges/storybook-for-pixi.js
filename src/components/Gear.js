@@ -1,7 +1,3 @@
-import * as PIXI from "pixi.js";
-import { createScene } from "../../stories/Scene";
-import { parseColor } from "../utils/ColorUtils";
-
 export function drawGear(
   target,
   x,
@@ -53,39 +49,3 @@ export function drawGear(
   }
   target.closePath();
 }
-
-export const createGear = ({
-  width,
-  height,
-  stroke,
-  color,
-  fill,
-  sides,
-  innerRadius,
-  outerRadius,
-  holeSides,
-  holeRadius,
-  angle,
-}) => {
-  const { canvas, app, viewport } = createScene({ width, height });
-
-  const graphics = new PIXI.Graphics();
-  graphics.lineStyle(stroke, parseColor(color));
-  graphics.beginFill(parseColor(fill));
-
-  drawGear(
-    graphics,
-    width / 2,
-    height / 2,
-    sides,
-    innerRadius,
-    outerRadius,
-    angle,
-    holeSides,
-    holeRadius
-  );
-
-  viewport.addChild(graphics);
-
-  return canvas;
-};
