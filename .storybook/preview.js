@@ -1,4 +1,4 @@
-import { createScene } from "../stories/Scene";
+import { createScene, loadTextures } from "../stories/Scene";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -9,6 +9,12 @@ export const parameters = {
     },
   },
 };
+
+export const loaders = [
+  async () => ({
+    loader: await loadTextures(),
+  }),
+];
 
 export const decorators = [
   (story) => {
