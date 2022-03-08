@@ -46,3 +46,20 @@ export const createScene = ({ width, height }) => {
 
   resize(width, height);
 };
+
+export const loadTextures = async () => {
+  return new Promise((resolve, reject) => {
+    const loader = new PIXI.Loader();
+    loader //
+      .add("images/logo.svg")
+      .load();
+
+    loader.onComplete.add(() => {
+      resolve();
+    });
+
+    loader.onError.add(() => {
+      reject();
+    });
+  });
+};
