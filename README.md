@@ -403,9 +403,11 @@ Result of this story will be:
 <img width="1180" alt="story-polygon" src="https://user-images.githubusercontent.com/1213591/157183208-2e73f6c7-741b-4566-a9b7-20b3f79ba283.png">
 
 
-See more examples: [Star][ex1], [Burst][ex2], [Gear][ex3], [Text Style][ex4]
+See more examples: [Star][ex1], [Burst][ex2], [Gear][ex3], [Text Style][ex4], [Logo][ex5], [Polygon][ex6]
 
-  [ex1]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/src/components/Star.stories.js
-  [ex2]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/src/components/Burst.js
-  [ex3]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/src/components/Gear.stories.js
+  [ex1]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/shapes/Star.stories.js
+  [ex2]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/shapes/Burst.stories.js
+  [ex3]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/shapes/Gear.stories.js
   [ex4]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/text/Text.stories.js
+  [ex5]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/logo/Logo.stories.js
+  [ex6]: https://github.com/jasonsturges/storybook-for-pixi.js/blob/main/stories/polygon/Polygon.stories.js
