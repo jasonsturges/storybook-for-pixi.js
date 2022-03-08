@@ -1,10 +1,11 @@
-import { createGear } from "../../src/components/Gear";
+import * as PIXI from "pixi.js";
+import { canvas, viewport } from "../Scene";
+import { drawGear } from "../../src/components/Gear";
+import { parseColor } from "../../src/utils/ColorUtils";
 
 export default {
   title: "Example/Shapes",
   argTypes: {
-    width: { control: "number" },
-    height: { control: "number" },
     stroke: { control: "number" },
     color: { control: "color" },
     fill: { control: "color" },
@@ -15,12 +16,38 @@ export default {
   },
 };
 
-const Template = (args) => createGear(args);
+export const Gear = ({
+  stroke,
+  color,
+  fill,
+  sides,
+  innerRadius,
+  outerRadius,
+  holeSides,
+  holeRadius,
+  angle,
+}) => {
+  const graphics = new PIXI.Graphics();
+  graphics.lineStyle(stroke, parseColor(color));
+  graphics.beginFill(parseColor(fill));
 
-export const Gear = Template.bind({});
+  drawGear(
+    graphics,
+    viewport.screenWidth / 2,
+    viewport.screenWidth / 2,
+    sides,
+    innerRadius,
+    outerRadius,
+    angle,
+    holeSides,
+    holeRadius
+  );
+
+  viewport.addChild(graphics);
+
+  return canvas;
+};
 Gear.args = {
-  width: 600,
-  height: 400,
   stroke: 2,
   color: "#cfefff",
   fill: "#036191",
