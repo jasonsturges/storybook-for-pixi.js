@@ -10,4 +10,6 @@ export function drawPolygon(target, x, y, sides, radius, angle = 0) {
     dy = y - Math.sin(start + step * n) * radius;
     target.lineTo(dx, dy);
   }
+
+  target.closePath();
 }
