@@ -1,3 +1,5 @@
+import { createScene } from "../stories/Scene";
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -10,6 +12,10 @@ export const parameters = {
 
 export const decorators = [
   (story) => {
+    createScene({
+      width: window.innerWidth - 32,
+      height: window.innerHeight - 36,
+    });
     return story();
   },
 ];
