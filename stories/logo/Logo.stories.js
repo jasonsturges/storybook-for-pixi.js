@@ -8,7 +8,7 @@ export default {
 /**
  * Pixi logo story
  */
-export const PixiLogo = (args) => {
+export const PixiLogo = () => {
   const logo = PIXI.Sprite.from("images/logo.svg");
   logo.anchor.set(0.5, 0.5);
   logo.x = viewport.screenWidth / 2;
