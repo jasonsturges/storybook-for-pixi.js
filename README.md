@@ -55,6 +55,11 @@ npm run storybook
 
 ## Configuration
 
+Storybook supports the following configurations.
+
+
+### Story Location
+
 If you prefer to keep stories out of the root or `src/` folders, you can optionally store them within the `.storybook/` folder.  This isolates all aspects of Storybook within a single folder.  
 
 Move your `stories/` folder inside `.storybook/` and update Storybook's `main.js` configuration file to the new path:
@@ -66,11 +71,91 @@ Move your `stories/` folder inside `.storybook/` and update Storybook's `main.js
 ],
 ```
 
-Decorators are run every time a story changes.  To insert code, or expand the template, edit the `decorators` found within the `preview.js` under the `.storybook/` folder.
+
+### Public Static Assets
+
+Static assets can be served and referenced via stories by configuring the `staticDirs` property in the `main.js` configuration file.
+
+```json
+staticDirs: ["../public"],
+```
+
+In this template, public assets are served from the `public/` folder.
+
+
+### Global Variables
+
+Global variables can be defined via the `globals` object in the `main.js` configuration file.
+
+For example, define a `myKey` property as follows:
+
+```js
+// Place custom global values here
+export const globals = {
+  myKey: "My value",
+};
+```
+
+Inside every story, the `globals` object may be accessed and derefereced as follows:
+
+```js
+export const Template = (args, { globals: { myKey } }) => {
+  console.log(myKey); // => "My value"
+};
+```
+
+
+### Loaders
+
+If your stories depend on textures loaded before the story executes, use Storybook's experimental `loaders` feature, defined in the `preview.js` under the `.storybook/` folder.
+
+This may be necessary if your sprites pivot or inverse scsale to flip and mirror textures, as width and height of the texture must be known at instantiation.
+
+```js
+import { loadTextures } from "../stories/Scene";
+
+export const loaders = [
+  async () => ({
+    loader: await loadTextures(),
+  }),
+];
+```
+
+Loaders feature async await for synchronous blocking - an indeterminate spinner will appear upon the first load of Storybook while all assets are loaded.  Once complete, stories will display as normal.  This happens only once per load of the Storybook webpage.
+
+As an example, the `Scene.js` loads the Pixi.js svg logo.
+
+```js
+export const loadTextures = async () => {
+  return new Promise((resolve, reject) => {
+    const loader = new PIXI.Loader();
+    loader //
+      .add("images/logo.svg")
+      .load();
+
+    loader.onComplete.add(() => {
+      resolve();
+    });
+
+    loader.onError.add(() => {
+      reject();
+    });
+  });
+};
+```
+
+
+### Decorators
+
+Decorators run every time a story changes.  To insert code, or expand the template, edit the `decorators` found within the `preview.js` under the `.storybook/` folder.
 
 ```js
 export const decorators = [
   (story) => {
+    createScene({
+      width: window.innerWidth - 32,
+      height: window.innerHeight - 36,
+    });
     return story();
   },
 ];
