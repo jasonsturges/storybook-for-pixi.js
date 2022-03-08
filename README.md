@@ -76,7 +76,7 @@ Move your `stories/` folder inside `.storybook/` and update Storybook's `main.js
 
 Static assets can be served and referenced via stories by configuring the `staticDirs` property in the `main.js` configuration file.
 
-```json
+```js
 staticDirs: ["../public"],
 ```
 
