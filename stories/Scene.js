@@ -1,9 +1,9 @@
 import * as PIXI from "pixi.js";
 import { Viewport } from "pixi-viewport";
 
-const canvas = document.createElement("canvas");
+export const canvas = document.createElement("canvas");
 
-const app = new PIXI.Application({
+export const app = new PIXI.Application({
   view: canvas,
   width: 300,
   height: 150,
@@ -13,7 +13,7 @@ const app = new PIXI.Application({
   resolution: devicePixelRatio,
 });
 
-const viewport = new Viewport({
+export const viewport = new Viewport({
   worldWidth: 1000,
   worldHeight: 1000,
   screenWidth: 300,
@@ -35,16 +35,10 @@ export const resize = (width, height) => {
 };
 
 export const createScene = ({ width, height }) => {
-  resize(width, height);
-
   while (viewport.children.length > 0) {
     const child = viewport.children.shift();
     child.destroy(true);
   }
 
-  return {
-    canvas,
-    app,
-    viewport,
-  };
+  resize(width, height);
 };
