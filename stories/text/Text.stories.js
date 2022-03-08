@@ -1,11 +1,9 @@
 import * as PIXI from "pixi.js";
-import { createScene } from "../Scene";
+import { canvas, viewport } from "../Scene";
 
 export default {
   title: "Example/Text",
   argTypes: {
-    width: { control: "number" },
-    height: { control: "number" },
     text: { control: "text" },
     align: {
       control: {
@@ -20,11 +18,6 @@ export default {
  * TextStyle instance
  */
 export const TextStyle = (args) => {
-  const { canvas, app, viewport } = createScene({
-    width: args.width,
-    height: args.height,
-  });
-
   const textStyle = new PIXI.TextStyle({
     fontsize: 24,
     fill: 0xffffff,
@@ -33,13 +26,15 @@ export const TextStyle = (args) => {
 
   const text = new PIXI.Text(args.text, textStyle);
   text.resolution = 8;
+  text.anchor.set(0.5);
+  text.x = viewport.screenWidth / 2;
+  text.y = viewport.screenHeight / 2;
+
   viewport.addChild(text);
 
   return canvas;
 };
 TextStyle.args = {
-  width: 600,
-  height: 400,
   text: "Hello, World\n😀",
   align: "center",
 };
