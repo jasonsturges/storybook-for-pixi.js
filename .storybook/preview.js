@@ -10,6 +10,11 @@ export const parameters = {
   },
 };
 
+// Place custom global values here
+// export const globals = {
+//   key: "My value",
+// };
+
 export const loaders = [
   async () => ({
     loader: await loadTextures(),
