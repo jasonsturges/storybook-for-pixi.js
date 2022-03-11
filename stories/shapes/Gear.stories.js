@@ -34,7 +34,7 @@ export const Gear = ({
   drawGear(
     graphics,
     viewport.screenWidth / 2,
-    viewport.screenWidth / 2,
+    viewport.screenHeight / 2,
     sides,
     innerRadius,
     outerRadius,
