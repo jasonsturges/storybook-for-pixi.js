@@ -15,9 +15,10 @@ export const parameters = {
 //   key: "My value",
 // };
 
+let loaded = 0;
 export const loaders = [
   async () => ({
-    loader: await loadTextures(),
+    loader: loaded++ < 1 ? await loadTextures() : null,
   }),
 ];
 
