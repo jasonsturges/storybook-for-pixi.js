@@ -24,18 +24,18 @@ Begin via any of the following:
 
 - Press the "*Use this template*" button
 
-- Use [degit](https://github.com/Rich-Harris/degit) to execute: 
+- Use [degit](https://github.com/Rich-Harris/degit) to execute:
 
     ```
     degit github:jasonsturges/storybook-for-pixi.js
     ```
-    
-- Use [GitHub CLI](https://cli.github.com/) to execute: 
+
+- Use [GitHub CLI](https://cli.github.com/) to execute:
 
     ```
     gh repo create <name> --template="https://github.com/jasonsturges/storybook-for-pixi.js"
     ```
-    
+
 - Simply `git clone`, delete the existing .git folder, and then:
 
     ```
@@ -43,8 +43,8 @@ Begin via any of the following:
     git add -A
     git commit -m "Initial commit"
     ````
-    
-    
+
+
 Install and run via npm (or yarn) by executing the `storybook` script:
 
 ```
@@ -60,7 +60,7 @@ Storybook supports the following configurations.
 
 ### Story Location
 
-If you prefer to keep stories out of the root or `src/` folders, you can optionally store them within the `.storybook/` folder.  This isolates all aspects of Storybook within a single folder.  
+If you prefer to keep stories out of the root or `src/` folders, you can optionally store them within the `.storybook/` folder.  This isolates all aspects of Storybook within a single folder.
 
 Move your `stories/` folder inside `.storybook/` and update Storybook's `main.js` configuration file to the new path:
 
@@ -233,9 +233,9 @@ export default {
     enabled: { control: "boolean" },
     text: { control: "text" },
     align: {
+      options: ["left", "center", "right"],
       control: {
         type: "radio",
-        options: ["left", "center", "right"],
       },
     },
   },
