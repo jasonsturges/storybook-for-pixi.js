@@ -9,7 +9,7 @@ export const app = new PIXI.Application({
   height: 150,
   antialias: true,
   autoDensity: true,
-  backgroundColor: 0x0,
+  backgroundColor: 0x131313,
   resolution: devicePixelRatio,
 });
 
