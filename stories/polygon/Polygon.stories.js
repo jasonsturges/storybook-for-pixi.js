@@ -6,12 +6,12 @@ import { drawPolygon } from "../../src/components/Polygon";
 export default {
   title: "Example/Polygon",
   argTypes: {
-    stroke: { control: "number" },
+    stroke: { control: { type: "range", min: 0, max: 5, step: 0.1 } },
     color: { control: "color" },
     fill: { control: "color" },
-    sides: { control: "number" },
-    radius: { control: "number" },
-    angle: { control: "number" },
+    sides: { control: { type: "range", min: 3, max: 25, step: 1 } },
+    radius: { control: { type: "range", min: 1, max: 100, step: 1 } },
+    angle: { control: { type: "range", min: 0, max: 360, step: 1 } },
   },
 };
 
