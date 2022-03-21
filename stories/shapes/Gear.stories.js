@@ -6,13 +6,15 @@ import { parseColor } from "../../src/utils/ColorUtils";
 export default {
   title: "Example/Shapes",
   argTypes: {
-    stroke: { control: "number" },
+    stroke: { control: { type: "range", min: 0, max: 5, step: 0.1 } },
     color: { control: "color" },
     fill: { control: "color" },
-    sides: { control: "number" },
-    innerRadius: { control: "number" },
-    outerRadius: { control: "number" },
-    angle: { control: "number" },
+    sides: { control: { type: "range", min: 3, max: 25, step: 1 } },
+    innerRadius: { control: { type: "range", min: 1, max: 100, step: 1 } },
+    outerRadius: { control: { type: "range", min: 1, max: 100, step: 1 } },
+    holeSides: { control: { type: "range", min: 3, max: 25, step: 1 } },
+    holeRadius: { control: { type: "range", min: 1, max: 100, step: 1 } },
+    angle: { control: { type: "range", min: 0, max: 360, step: 1 } },
   },
 };
 
